@@ -11,7 +11,7 @@ app.use(bodyParse.json())
 app.use(bodyParse.urlencoded({extended:true}))
 app.use(cors())
 
-sgMail.setApiKey(APIS)
+sgMail.setApiKey('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')
 
 router.post('/send_email', (req, res) => {
     let email_data = {

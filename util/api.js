@@ -1,5 +1,5 @@
 const APIS = {
-    SEND_GRID_API:'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'
+    SEND_GRID_API:'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'
 }
 
 export default APIS;

@@ -2,15 +2,18 @@ const express = require('express')
 const app = express();
 const sgMail = require('@sendgrid/mail')
 const bodyParse = require('body-parser')
+const serverless = require('serverless-http')
 const cors = require('cors')
+const router = express.Router();
+const APIS = require('../util/api')
 
 app.use(bodyParse.json())
 app.use(bodyParse.urlencoded({extended:true}))
 app.use(cors())
 
-sgMail.setApiKey('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');
+sgMail.setApiKey(APIS)
 
-app.post('/send_email', (req, res) => {
+router.post('/send_email', (req, res) => {
     let email_data = {
         to:'rauf@eatsyapp.co',
         from:req.body.from,
@@ -41,4 +44,14 @@ app.post('/send_email', (req, res) => {
     })
 })
 
+router.get('/', (req, res) => {
+    res.json({
+        message:"halo dunia"
+    })
+})
+
+app.use('/.netlify/functions/index',router)
+
 app.listen(4000, () => console.log(`listening to port 4000`))
+
+module.exports.handler = serverless(app)

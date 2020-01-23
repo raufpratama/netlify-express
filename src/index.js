@@ -39,7 +39,7 @@ router.post('/send_email', (req, res) => {
             console.log('ada error ' + err)
         } else {
             console.log('berhasil')
-            res.send(JSON.stringify({message:"berhasil",status:200}))
+            res.send({message:"berhasil",status:200})
         }
     })
 })

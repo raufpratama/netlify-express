@@ -44,6 +44,12 @@ router.post('/send_email', (req, res) => {
     })
 })
 
+router.get('/ok', (req, res) => {
+    res.json({
+        message:"halo dunia"
+    })
+})
+
 router.get('/', (req, res) => {
     res.json({
         message:"halo dunia"

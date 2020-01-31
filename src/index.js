@@ -11,7 +11,7 @@ require('dotenv').config()
 
 app.use(bodyParse.json())
 app.use(bodyParse.urlencoded({extended: true}))
-app.options('*', cors())
+app.use(cors())
 
 sgMail.setApiKey(process.env.SG_EATSY_API_KEY)
 

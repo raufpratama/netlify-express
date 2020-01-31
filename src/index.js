@@ -31,13 +31,14 @@ router.post('/send_email/merchant_application', (req, res) => {
         subject: email_data.from,
         text: 'and easy to do anywhere, even with Node.js',
         html: `<strong>Name : </strong> ${email_data.name} <br/><br/>
+                <strong>Email : </strong> ${email_data.email} <br/><br/>
                 <strong>Restaurant Name :</strong> ${email_data.restaurant_name}<br/><br/>
                 <strong>Phone Number :</strong> ${email_data.phone_number}<br/><br/>
                 <strong>Message :</strong> ${email_data.message}`
     };
     sgMail.send(msg, null, (err) => {
         if (err) {
-            res.send({message: "gaga;l", status: 401,err})
+            res.send({message: "gaga;l", status: 401, err})
             console.log('ada error ' + err)
         } else {
             console.log('berhasil')
@@ -51,8 +52,8 @@ router.post('/send_email/job_application', (req, res) => {
         to: 'rauf@eatsyapp.co',
         from: req.body.from,
         subject: 'Job Application',
-        role:req.body.role,
-        email:req.body.email,
+        role: req.body.role,
+        email: req.body.email,
         name: req.body.name,
         message: req.body.message
     }
@@ -68,7 +69,7 @@ router.post('/send_email/job_application', (req, res) => {
     };
     sgMail.send(msg, null, (err) => {
         if (err) {
-            res.send({message: "gagal", status: 401,err})
+            res.send({message: "gagal", status: 401, err})
             console.log('ada error ' + err)
         } else {
             console.log('berhasil')

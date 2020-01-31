@@ -5,7 +5,6 @@ const bodyParse = require('body-parser')
 const serverless = require('serverless-http')
 const cors = require('cors')
 const router = express.Router();
-const APIS = require('../util/api')
 const corsOptions = require('../util/cors.config')
 require('dotenv').config()
 

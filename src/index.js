@@ -11,7 +11,7 @@ app.use(bodyParse.json())
 app.use(bodyParse.urlencoded({extended:true}))
 app.use(cors())
 
-sgMail.setApiKey('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')
+sgMail.setApiKey(APIS.SEND_GRID_EATSY_API)
 
 router.post('/send_email', (req, res) => {
     let email_data = {
@@ -36,6 +36,7 @@ router.post('/send_email', (req, res) => {
     };
     sgMail.send(msg,null,(err)=>{
         if(err) {
+            res.send({message:"gagal",status:401})
             console.log('ada error ' + err)
         } else {
             console.log('berhasil')
@@ -58,6 +59,6 @@ router.get('/', (req, res) => {
 
 app.use('/.netlify/functions/index',router)
 
-app.listen(4000, () => console.log(`listening to port 4000`))
+app.listen(9000, () => console.log(`listening to port 9000`))
 
 module.exports.handler = serverless(app)

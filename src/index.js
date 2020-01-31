@@ -83,7 +83,7 @@ router.get('/ok', (req, res) => {
 })
 
 router.get('/', (req, res) => {
-    res.json({message: "halo dunia"})
+    res.json({message: "halo world"})
 })
 
 app.use('/.netlify/functions/index', router)

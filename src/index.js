@@ -33,7 +33,7 @@ router.post('/send_email', (req, res) => {
         html: `<strong>Name : </strong> ${email_data.name} <br/><br/>
                 <strong>Restaurant Name :</strong> ${email_data.restaurant_name}<br/><br/>
                 <strong>Phone Number :</strong> ${email_data.phone_number}<br/><br/>
-                <stronng>Message :</stronng> ${email_data.message}`
+                <strong>Message :</strong> ${email_data.message}`
     };
     sgMail.send(msg, null, (err) => {
         if (err) {

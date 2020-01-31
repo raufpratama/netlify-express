@@ -38,7 +38,7 @@ router.post('/send_email/merchant_application',cors(corsOptions), (req, res) => 
     };
     sgMail.send(msg, null, (err) => {
         if (err) {
-            res.send({message: "gagal", status: 401})
+            res.send({message: "gagal", status: 401,err})
             console.log('ada error ' + err)
         } else {
             console.log('berhasil')
@@ -69,7 +69,7 @@ router.post('/send_email/job_application',cors(corsOptions), (req, res) => {
     };
     sgMail.send(msg, null, (err) => {
         if (err) {
-            res.send({message: "gagal", status: 401})
+            res.send({message: "gagal", status: 401,err})
             console.log('ada error ' + err)
         } else {
             console.log('berhasil')

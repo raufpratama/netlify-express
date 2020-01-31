@@ -38,11 +38,11 @@ router.post('/send_email/merchant_application', (req, res) => {
     };
     sgMail.send(msg, null, (err) => {
         if (err) {
-            res.send({message: "gaga;l", status: 401,err,env_key:process.env.SG_EATSY_API_KEY})
+            res.send({message: "gaga;l", status: 401,err})
             console.log('ada error ' + err)
         } else {
             console.log('berhasil')
-            res.send({message: "berhasil", status: 200,env_key:process.env.SG_EATSY_API_KEY})
+            res.send({message: "berhasil", status: 200})
         }
     })
 })

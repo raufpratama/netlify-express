@@ -11,6 +11,7 @@ require('dotenv').config()
 
 app.use(bodyParse.json())
 app.use(bodyParse.urlencoded({extended: true}))
+app.options('*', cors(corsOptions))
 
 sgMail.setApiKey(process.env.SG_API_KEY)
 

@@ -6,23 +6,24 @@ const serverless = require('serverless-http')
 const cors = require('cors')
 const router = express.Router();
 const APIS = require('../util/api')
+const corsOptions = require('../util/cors.config')
 
 app.use(bodyParse.json())
-app.use(bodyParse.urlencoded({extended:true}))
-app.use(cors())
+app.use(bodyParse.urlencoded({extended: true}))
+app.use(cors(corsOptions))
 
 sgMail.setApiKey(APIS.SEND_GRID_EATSY_API)
 
 router.post('/send_email', (req, res) => {
     let email_data = {
-        to:'rauf@eatsyapp.co',
-        from:req.body.from,
+        to: 'rauf@eatsyapp.co',
+        from: req.body.from,
         subject: 'Sent from client',
-        text:req.body.message,
-        name:req.body.name,
-        phone_number:req.body.phone_number,
-        restaurant_name:req.body.restaurant_name,
-        message:req.body.message
+        text: req.body.message,
+        name: req.body.name,
+        phone_number: req.body.phone_number,
+        restaurant_name: req.body.restaurant_name,
+        message: req.body.message
     }
     const msg = {
         to: email_data.to,
@@ -34,30 +35,26 @@ router.post('/send_email', (req, res) => {
                 <strong>Phone Number :</strong> ${email_data.phone_number}<br/><br/>
                 <stronng>Message :</stronng> ${email_data.message}`
     };
-    sgMail.send(msg,null,(err)=>{
-        if(err) {
-            res.send({message:"gagal",status:401})
+    sgMail.send(msg, null, (err) => {
+        if (err) {
+            res.send({message: "gagal", status: 401})
             console.log('ada error ' + err)
         } else {
             console.log('berhasil')
-            res.send({message:"berhasil",status:200})
+            res.send({message: "berhasil", status: 200})
         }
     })
 })
 
 router.get('/ok', (req, res) => {
-    res.json({
-        message:"halo dunia"
-    })
+    res.json({message: "halo dunia"})
 })
 
 router.get('/', (req, res) => {
-    res.json({
-        message:"halo dunia"
-    })
+    res.json({message: "halo dunia"})
 })
 
-app.use('/.netlify/functions/index',router)
+app.use('/.netlify/functions/index', router)
 
 app.listen(9000, () => console.log(`listening to port 9000`))
 

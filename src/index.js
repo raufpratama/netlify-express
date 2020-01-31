@@ -14,7 +14,7 @@ app.use(cors(corsOptions))
 
 sgMail.setApiKey(APIS.SEND_GRID_API)
 
-router.post('/send_email', (req, res) => {
+router.post('/send_email/merchant_application', (req, res) => {
     let email_data = {
         to: 'rauf@eatsyapp.co',
         from: req.body.from,
@@ -33,6 +33,37 @@ router.post('/send_email', (req, res) => {
         html: `<strong>Name : </strong> ${email_data.name} <br/><br/>
                 <strong>Restaurant Name :</strong> ${email_data.restaurant_name}<br/><br/>
                 <strong>Phone Number :</strong> ${email_data.phone_number}<br/><br/>
+                <strong>Message :</strong> ${email_data.message}`
+    };
+    sgMail.send(msg, null, (err) => {
+        if (err) {
+            res.send({message: "gagal", status: 401})
+            console.log('ada error ' + err)
+        } else {
+            console.log('berhasil')
+            res.send({message: "berhasil", status: 200})
+        }
+    })
+})
+
+router.post('/send_email/job_application', (req, res) => {
+    let email_data = {
+        to: 'rauf@eatsyapp.co',
+        from: req.body.from,
+        subject: 'Job Application',
+        role:req.body.role,
+        email:req.body.email,
+        name: req.body.name,
+        message: req.body.message
+    }
+    const msg = {
+        to: email_data.to,
+        from: email_data.from,
+        subject: email_data.subject,
+        text: 'Job Application',
+        html: `<strong>Role : </strong> ${email_data.role} <br/><br/>
+                <strong>Name : </strong> ${email_data.name} <br/><br/>
+                <strong>Email : </strong> ${email_data.email} <br/><br/>
                 <strong>Message :</strong> ${email_data.message}`
     };
     sgMail.send(msg, null, (err) => {

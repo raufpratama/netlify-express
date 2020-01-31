@@ -12,7 +12,7 @@ app.use(bodyParse.json())
 app.use(bodyParse.urlencoded({extended: true}))
 app.use(cors(corsOptions))
 
-sgMail.setApiKey(APIS.SEND_GRID_EATSY_API)
+sgMail.setApiKey(APIS.SEND_GRID_API)
 
 router.post('/send_email', (req, res) => {
     let email_data = {

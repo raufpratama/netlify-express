@@ -7,12 +7,13 @@ const cors = require('cors')
 const router = express.Router();
 const APIS = require('../util/api')
 const corsOptions = require('../util/cors.config')
+require('dotenv').config()
 
 app.use(bodyParse.json())
 app.use(bodyParse.urlencoded({extended: true}))
 app.use(cors(corsOptions))
 
-sgMail.setApiKey(APIS.SEND_GRID_API)
+sgMail.setApiKey(process.env.SG_API_KEY)
 
 router.post('/send_email/merchant_application', (req, res) => {
     let email_data = {

@@ -13,7 +13,7 @@ app.use(bodyParse.json())
 app.use(bodyParse.urlencoded({extended: true}))
 app.options('*', cors(corsOptions))
 
-sgMail.setApiKey(process.env.SG_API_KEY)
+sgMail.setApiKey(process.env.SG_EATSY_API_KEY)
 
 router.post('/send_email/merchant_application',cors(corsOptions), (req, res) => {
     let email_data = {

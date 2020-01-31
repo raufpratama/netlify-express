@@ -11,11 +11,10 @@ require('dotenv').config()
 
 app.use(bodyParse.json())
 app.use(bodyParse.urlencoded({extended: true}))
-app.use(cors(corsOptions))
 
 sgMail.setApiKey(process.env.SG_API_KEY)
 
-router.post('/send_email/merchant_application', (req, res) => {
+router.post('/send_email/merchant_application',cors(corsOptions), (req, res) => {
     let email_data = {
         to: 'rauf@eatsyapp.co',
         from: req.body.from,
@@ -47,7 +46,7 @@ router.post('/send_email/merchant_application', (req, res) => {
     })
 })
 
-router.post('/send_email/job_application', (req, res) => {
+router.post('/send_email/job_application',cors(corsOptions), (req, res) => {
     let email_data = {
         to: 'rauf@eatsyapp.co',
         from: req.body.from,
